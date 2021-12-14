@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    # ユーザーとパスワードを追加追加
+  username: <%= ENV.fetch('POSTGRES_USER') { 'postgres' } %>
+  password: <%= ENV.fetch('POSTGRES_PASSWORD') { 'password' } %>
+
+development:
+  <<: *default
+  database: myapp_development
+    # railsコンテナに設定した DATABASE_HOST をホストに設定
+  host: &development_host <%= ENV.fetch('DATABASE_HOST') { 'localhost' } %>
+test:
+  <<: *default
+  database: myapp_test
+    # development と同様のホストを設定
+  host: *development_host
