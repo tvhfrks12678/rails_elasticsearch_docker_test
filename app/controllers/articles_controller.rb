@@ -3,8 +3,11 @@ class ArticlesController < ApplicationController
 
   # GET /articles
   def index
-    @articles = Article.all
+    # @articles = Article.all
     # @articles = Article.search("_3")
+    # @articles = Article.search_body_match("記事本文_0")
+    # @articles = Article.__elasticsearch__.search(version: true, query: { term: { id: 6 } }, size: 1).response
+    @articles = Article.search_body("記事本文")
 
     render json: @articles
   end
