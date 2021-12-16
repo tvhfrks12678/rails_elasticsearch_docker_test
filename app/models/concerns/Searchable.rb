@@ -14,9 +14,7 @@ module Searchable
       mapping _source: { enabled: true } do
         # indexes :id, type: 'integer', index: 'not_analyzed'
         indexes :id, type: 'integer'
-        indexes :title, type: 'string'
-        # indexes :title, type: 'text'
-        # indexes :id, type: 'long'
+        indexes :title, type: 'text'
         indexes :body, type: 'text'
       end
     end

@@ -1,5 +1,4 @@
 class Article < ActiveRecord::Base
-  include Elasticsearch::Model
   include Searchable
   def self.search_body_match(keyword)
     if keyword.present?
